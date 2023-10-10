@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/pocemon-test-task/static/css/main.97f118b6.css",
+    "main.js": "/pocemon-test-task/static/js/main.7d618ea1.js",
+    "index.html": "/pocemon-test-task/index.html",
+    "main.97f118b6.css.map": "/pocemon-test-task/static/css/main.97f118b6.css.map",
+    "main.7d618ea1.js.map": "/pocemon-test-task/static/js/main.7d618ea1.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.97f118b6.css",
+    "static/js/main.7d618ea1.js"
+  ]
+}
