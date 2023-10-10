@@ -19,7 +19,8 @@ function App() {
             path='/'
             element={<PokemonList pokemons={pokemons}/>}>
         </Route>
-        <Route path='/pokemon/info/:name' element={<PokemonCharacter />}></Route>
+        <Route path='/pokemon/info/:name' element={<PokemonCharacter />}>
+        </Route>
       </Routes>
   );
 }

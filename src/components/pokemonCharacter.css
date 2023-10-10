@@ -1,0 +1,30 @@
+.container {
+    border: 5px solid black;
+    border-radius: 12px;
+    width: max-content;
+    height: max-content;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    top: 0;
+    left: 0;
+    margin: auto;
+}
+
+.wrapper {
+    padding: 50px;
+}
+
+.title {
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.button {
+    border: 1px solid black;
+    color: black;
+    border-radius: 12px;
+    padding: 10px;
+    text-decoration: none;
+}
