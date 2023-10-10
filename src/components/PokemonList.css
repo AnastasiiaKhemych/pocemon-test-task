@@ -1,0 +1,5 @@
+.box {
+    display: flex;
+    text-decoration: none;
+    text-transform: uppercase;
+}
