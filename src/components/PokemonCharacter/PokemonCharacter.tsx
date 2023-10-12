@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
-import * as pokemonService from '../api/pokemon'
-import {Pokemon} from "../types/pokemon";
+import * as pokemonService from '../../api/pokemon'
+import {Pokemon} from "../../types/pokemon";
 import {Link, useParams} from "react-router-dom";
 import './pokemonCharacter.css';
 
