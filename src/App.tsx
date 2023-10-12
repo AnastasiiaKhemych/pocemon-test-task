@@ -6,6 +6,7 @@ import {PokemonCharacter} from "./components/PokemonCharacter/PokemonCharacter";
 import {Header} from "./components/Header/Header";
 import './App.css';
 import {PokemonsList} from "./components/PokemonsList/PokemonsList";
+import {Forms} from "./components/Forms";
 
 export const App = () => {
   const [searchParams, setSearchParams] = useSearchParams()
@@ -16,6 +17,9 @@ export const App = () => {
   const [nextUrl, setNextUrl] = useState('');
   const [prevUrl, setPrevUrl] = useState('');
   const [typeList, setTypeList] = useState<string[]>([]);
+  const [pokemonType, setPokemonType] =useState('');
+
+    console.log(pokemonType)
 
   const getPokemons = async (shortPokemonList: ShortObjectInfo[]) => {
       const pokemonFullInfoList: Pokemon[] = [];
@@ -40,13 +44,24 @@ export const App = () => {
   const fetchPokemons = async() => {
       // setLoading(true)
 
-      // if
-      const shortPokemonListRes = await pokemonService.getPokemons()
+      if (pokemonType) {
+          const shortPokemonListRes = await pokemonService.getPokemonByType(pokemonType)
+         const res =  shortPokemonListRes.pokemon.map((item) => {
+             return item.pokemon
+         })
+          await getPokemons(res);
+      } else {
+          const shortPokemonListRes = await pokemonService.getPokemons()
+          await getPokemons(shortPokemonListRes.results);
+      }
 
-      // const shortPokemonListRes = await pokemonService.getPokemonByType()
-
-
-      await getPokemons(shortPokemonListRes.results);
+      await pokemonService.getPokemonType()
+          .then((data) => {
+              const typeArray = data.results.map((item) => {
+                  return item.name
+              })
+              setTypeList(typeArray)
+          })
 
       // setLoading(false)
   }
@@ -55,19 +70,13 @@ export const App = () => {
 
       fetchPokemons()
 
-      pokemonService.getPokemonType()
-        .then((data) => {
-            const typeArray = data.results.map((item) => {
-                return item.name
-               })
-            setTypeList(typeArray)
-            })
-  }, []);
+  }, [pokemonType]);
 
 
   return (
       <div className="app_container">
       <Header />
+      <Forms typeList={typeList} setPokemonType={setPokemonType} pokemonType={pokemonType}/>
       <Routes>
         <Route
             path='/'

@@ -9,13 +9,16 @@ export interface ResponseInfo<T> {
     previous: string | null,
     results: T[],
 }
-//
-//
-// interface AbilityWrapper {
-//     is_hidden: boolean,
-//     slot: number,
-//     ability: Ability,
-// }
+
+export interface PokemonType {
+    pokemon: ShortObjectInfo,
+    slot: number,
+}
+
+export interface PokemonTypesInfo {
+    id: number,
+    pokemon: PokemonType[]
+}
 
 interface DreamWorld {
     front_default: string,
@@ -57,4 +60,5 @@ export interface Pokemon {
     sprites: Sprites,
     types: Types[],
 }
+
 
