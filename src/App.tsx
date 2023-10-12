@@ -1,16 +1,31 @@
 import React, {useEffect, useState} from 'react';
 import * as pokemonService from './api/pokemon'
-import {ShortPokemonInfo} from "./types/pokemon";
+import {Pokemon, ShortObjectInfo} from "./types/pokemon";
 import {Route, Routes, useSearchParams} from "react-router-dom";
 import {PokemonCharacter} from "./components/PokemonCharacter/PokemonCharacter";
-import {PokemonList} from "./components/PokemonList/PokemonList";
 import {Header} from "./components/Header/Header";
 import './App.css';
+import {PokemonsList} from "./components/PokemonsList/PokemonsList";
 
-function App() {
+export const App = () => {
   const [searchParams, setSearchParams] = useSearchParams()
-  const [pokemons, setPokemons] = useState<ShortPokemonInfo[]>([]);
   const activeName = searchParams.get('name') || '';
+  const [pokemonFullInfo, setPokemonFullInfo] = useState<Pokemon[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [url, setUrl] = useState('https://pokeapi.co/api/v2/pokemon/');
+  const [nextUrl, setNextUrl] = useState('');
+  const [prevUrl, setPrevUrl] = useState('');
+  const [typeList, setTypeList] = useState<string[]>([]);
+
+  const getPokemons = async (shortPokemonList: ShortObjectInfo[]) => {
+      const pokemonFullInfoList: Pokemon[] = [];
+      await Promise.all(shortPokemonList.map(async(item: ShortObjectInfo) => {
+          const pokemon = await pokemonService.getPokemonByName(item.name)
+          pokemonFullInfoList.push(pokemon)
+        }))
+      const sortedPokemonList = pokemonFullInfoList.sort((a, b) => a.id - b.id)
+      setPokemonFullInfo(sortedPokemonList);
+  }
 
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       const params = new URLSearchParams(searchParams)
@@ -22,10 +37,33 @@ function App() {
       setSearchParams(params)
   }
 
+  const fetchPokemons = async() => {
+      // setLoading(true)
+
+      // if
+      const shortPokemonListRes = await pokemonService.getPokemons()
+
+      // const shortPokemonListRes = await pokemonService.getPokemonByType()
+
+
+      await getPokemons(shortPokemonListRes.results);
+
+      // setLoading(false)
+  }
+
   useEffect(() => {
-    pokemonService.getPokemons()
-        .then((data) => setPokemons(data.results))
-  },[])
+
+      fetchPokemons()
+
+      pokemonService.getPokemonType()
+        .then((data) => {
+            const typeArray = data.results.map((item) => {
+                return item.name
+               })
+            setTypeList(typeArray)
+            })
+  }, []);
+
 
   return (
       <div className="app_container">
@@ -34,18 +72,18 @@ function App() {
         <Route
             path='/'
             element={
-            <PokemonList
-                pokemons={pokemons}
-                handleNameChange={handleNameChange}
-                activeName={activeName}
-            />}
+            <PokemonsList pokemon={pokemonFullInfo} loading={loading} />}
         >
         </Route>
         <Route path='/pokemon/info/:name' element={<PokemonCharacter />}>
         </Route>
       </Routes>
+          <div className="btn-group">
+              {prevUrl && (
+                  <button>Previous</button>
+              )}
+              <button>Next</button>
+          </div>
       </div>
   );
 }
-
-export default App;

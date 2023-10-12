@@ -1,4 +1,4 @@
-export interface ShortPokemonInfo {
+export interface ShortObjectInfo {
     name: string,
     url: string,
 }
@@ -27,26 +27,26 @@ interface Other {
 
 interface VersionGroupDetails {
     level_learned_at: number,
-    version_group: ShortPokemonInfo,
-    move_learn_method: ShortPokemonInfo,
+    version_group: ShortObjectInfo,
+    move_learn_method: ShortObjectInfo,
 }
 
 interface Moves {
-    move: ShortPokemonInfo,
+    move: ShortObjectInfo,
     version_group_details: VersionGroupDetails[],
 }
 
 interface Stats {
     base_stat: number,
     effort: number,
-    stat: ShortPokemonInfo,
+    stat: ShortObjectInfo,
 }
 
 interface Sprites {
     other: Other,
 }
 interface Types {
-    type: ShortPokemonInfo,
+    type: ShortObjectInfo,
 }
 
 export interface Pokemon {
@@ -57,3 +57,4 @@ export interface Pokemon {
     sprites: Sprites,
     types: Types[],
 }
+

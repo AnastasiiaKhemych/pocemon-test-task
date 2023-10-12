@@ -30,10 +30,5 @@ module.exports = {
         sourceType: 'module',
     },
     plugins: ['@typescript-eslint', 'react'],
-    rules: {
-        'max-len': ['error', {
-            ignoreTemplateLiterals: true,
-            ignoreComments: true,
-        }],
-    },
+    rules: {},
 };
