@@ -15,12 +15,11 @@ type Props = {
 
 export const PokemonCard: React.FC<Props> = ({item}) => {
     return (
-        <Link to={`/pokemon/info/${item.name}`}>
-            <Card sx={{ maxWidth: 345, maxHeight: 400, backgroundColor: '#755EDF'}}>
+        <Link to={`/pokemon/info/${item.name}`} style={{ textDecoration: 'none' }}>
+            <Card sx={{ maxWidth: 345, maxHeight: 400, backgroundColor: '#755EDF', padding: '16px'}}>
                 <CardActionArea>
                     <CardMedia
                         component="img"
-                        height="140"
                         image={item.sprites.other.dream_world.front_default}
                         alt="green iguana"
                         sx={{height: 300, objectFit: 'contain', paddingTop: '20px'}}

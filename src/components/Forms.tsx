@@ -26,6 +26,7 @@ export const Forms: React.FC<Props> = ({typeList, setPokemonType, pokemonType}) 
                     label="Type"
                     value={pokemonType}
                     onChange={handleChange}
+                    sx={{ backgroundColor: '#F8C921'}}
                 >
                     {typeList.map((item) => (
                         <MenuItem key={item} value={item}>

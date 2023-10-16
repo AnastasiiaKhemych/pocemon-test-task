@@ -1,15 +1,21 @@
 .pokemon_container {
-    display: flex;
-    border: 2px solid black;
     border-radius: 12px;
-    margin: 100px 300px;
     text-transform: uppercase;
-    background-image: url("../../assets/icons/back-pikachu.png");
+    padding: 32px;
+    max-width: 1000px;
+    display: flex;
+    justify-content: center;
+}
+
+.pokemon_wrapper {
+    display: flex;
+    gap: 50px;
+    flex-wrap: wrap;
+    justify-content: center;
+
 }
 
 .left-content {
-    flex-basis: 50%;
-    margin: 100px;
 }
 
 .poke_title {
@@ -18,10 +24,8 @@
 }
 
 .right-content {
-    flex-basis: 50%;
-    width: 50%;
+    /*width: 50%;*/
     text-align: center;
-    margin: 100px;
 }
 
 .right_img {
@@ -30,8 +34,9 @@
 
 .abilities {
     display: flex;
-    gap: 50px;
+    gap: 16px 50px;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .group {

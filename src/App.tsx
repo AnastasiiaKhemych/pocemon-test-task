@@ -76,6 +76,7 @@ export const App = () => {
   return (
       <>
       <Header />
+          <div className="content">
       <Routes>
         <Route
             path='/'
@@ -92,6 +93,7 @@ export const App = () => {
         <Route path='/pokemon/info/:name' element={<PokemonCharacter />}>
         </Route>
       </Routes>
+          </div>
       </>
   );
 }
