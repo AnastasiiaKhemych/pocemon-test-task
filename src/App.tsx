@@ -42,7 +42,7 @@ export const App = () => {
   }
 
   const fetchPokemons = async() => {
-      // setLoading(true)
+      setLoading(true)
 
       if (pokemonType) {
           const shortPokemonListRes = await pokemonService.getPokemonByType(pokemonType)
@@ -63,7 +63,7 @@ export const App = () => {
               setTypeList(typeArray)
           })
 
-      // setLoading(false)
+      setLoading(false)
   }
 
   useEffect(() => {
@@ -74,25 +74,24 @@ export const App = () => {
 
 
   return (
-      <div className="app_container">
+      <>
       <Header />
-      <Forms typeList={typeList} setPokemonType={setPokemonType} pokemonType={pokemonType}/>
       <Routes>
         <Route
             path='/'
             element={
-            <PokemonsList pokemon={pokemonFullInfo} loading={loading} />}
+            <PokemonsList
+                typeList={typeList}
+                pokemonType={pokemonType}
+                setPokemonType={setPokemonType}
+                pokemon={pokemonFullInfo}
+                loading={loading}
+            />}
         >
         </Route>
         <Route path='/pokemon/info/:name' element={<PokemonCharacter />}>
         </Route>
       </Routes>
-          <div className="btn-group">
-              {prevUrl && (
-                  <button>Previous</button>
-              )}
-              <button>Next</button>
-          </div>
-      </div>
+      </>
   );
 }

@@ -7,6 +7,7 @@ import {
 import React from "react";
 import './PokemonCard.css';
 import {Pokemon} from "../../types/pokemon";
+import {Link} from "react-router-dom";
 
 type Props = {
     item: Pokemon,
@@ -14,6 +15,7 @@ type Props = {
 
 export const PokemonCard: React.FC<Props> = ({item}) => {
     return (
+        <Link to={`/pokemon/info/${item.name}`}>
             <Card sx={{ maxWidth: 345, maxHeight: 400, backgroundColor: '#755EDF'}}>
                 <CardActionArea>
                     <CardMedia
@@ -41,6 +43,6 @@ export const PokemonCard: React.FC<Props> = ({item}) => {
                     </CardContent>
                 </CardActionArea>
             </Card>
-
+        </Link>
     )
 }

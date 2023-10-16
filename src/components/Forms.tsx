@@ -17,7 +17,7 @@ export const Forms: React.FC<Props> = ({typeList, setPokemonType, pokemonType}) 
         setPokemonType(event.target.value as string);
     };
     return (
-        <Box sx={{ maxWidth: 345, margin: '100px 100px', color: '#755EDF' }}>
+        <Box sx={{ maxWidth: 345, color: '#755EDF', marginLeft: '100px', paddingTop: '50px'}}>
             <FormControl fullWidth>
                 <InputLabel id="demo-simple-select-label">Type</InputLabel>
                 <Select

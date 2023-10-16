@@ -52,8 +52,12 @@ interface Types {
     type: ShortObjectInfo,
 }
 
+interface Abilities {
+    ability: ShortObjectInfo,
+}
 export interface Pokemon {
     id: number,
+    abilities: Abilities[],
     name: string,
     moves: Moves[],
     stats: Stats[],
