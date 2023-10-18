@@ -1,10 +1,25 @@
 import React, {Fragment, useEffect, useState} from "react";
 import * as pokemonService from '../../api/pokemon'
 import {Pokemon} from "../../types/pokemon";
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import './pokemonCharacter.css';
 import Box from "@mui/material/Box";
-import {Container, Paper, Slider} from "@mui/material";
+import {Button, Container, Paper} from "@mui/material";
+import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
+import { styled } from '@mui/material/styles';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+
+const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
+    height: 10,
+    borderRadius: 5,
+    [`&.${linearProgressClasses.colorPrimary}`]: {
+        backgroundColor: theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
+    },
+    [`& .${linearProgressClasses.bar}`]: {
+        borderRadius: 5,
+        backgroundColor: theme.palette.mode === 'light' ? '#1a90ff' : '#308fe8',
+    },
+}));
 
 export const PokemonCharacter = () => {
     const [dataPokemon, setDataPokemon] = useState<Pokemon>();
@@ -28,18 +43,9 @@ export const PokemonCharacter = () => {
                               <div className="base_stat">
                                   {dataPokemon?.stats.map((item) => (
                                       <Fragment key={`${item.stat.name}-${item.base_stat}`}>
-                                          <h2>{item.stat.name}</h2>
-                                          <Box sx={{ width: 300 }}>
-                                              <Slider
-                                                  aria-label="Temperature"
-                                                  defaultValue={item.base_stat}
-                                                  color="secondary"
-                                                  sx={{
-                                                      '& .MuiSlider-thumb': {
-                                                          display: 'none'
-                                                      }
-                                                  }}
-                                              />
+                                          <h3 style={{margin: '10px 0 10px 0'}}>{item.stat.name}: {item.base_stat}</h3>
+                                          <Box sx={{ position: 'relative' }}>
+                                              <BorderLinearProgress variant="determinate" value={item.base_stat} />
                                           </Box>
                                       </Fragment>
                                   ))}
@@ -51,23 +57,32 @@ export const PokemonCharacter = () => {
                                   className="right_img"
                                   alt="Pokemon img"
                               />
-                              <div className="abilities">
-                                  {dataPokemon?.abilities.map((poke) => (
-                                      <div className="group" key="poke">
-                                          <h2>{poke.ability.name}</h2>
-                                      </div>
-                                  ))}
-                              </div>
                           </div>
                       </div>
-                   {/*<Link to={`/`} style={{marginTop: '550px', marginRight: '50px'}}>*/}
-                   {/*    <Button variant="contained" size="large">*/}
-                   {/*        Go Back*/}
-                   {/*    </Button>*/}
-                   {/*</Link>*/}
                </div>
                     </Paper>
                 </Container>
+                <Link
+                    to={`/`}
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'end',
+                        textDecoration: 'none',
+
+                }}>
+                    <Button
+                        variant="contained"
+                        size="large"
+                        sx={{
+                            position: 'absolute',
+                            bottom: '100px',
+                            right: '100px',
+                    }}>
+                        <ExitToAppIcon
+                            sx={{}}
+                        />
+                    </Button>
+                </Link>
             </>
     )
 }

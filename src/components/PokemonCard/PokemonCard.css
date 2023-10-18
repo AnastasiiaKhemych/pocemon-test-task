@@ -1,1 +1,11 @@
+.abilities {
+    display: flex;
+    justify-content: space-around;
+}
 
+.group {
+    background-color: coral;
+    border-radius: 4px;
+    align-items: center;
+    padding: 5px;
+}

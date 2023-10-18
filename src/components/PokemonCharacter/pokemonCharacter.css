@@ -16,32 +16,20 @@
 }
 
 .left-content {
+
 }
 
 .poke_title {
     margin-bottom: 30px;
-    color: blue;
+    color: #1B76D2;
 }
 
 .right-content {
-    /*width: 50%;*/
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .right_img {
     padding: 40px;
-}
-
-.abilities {
-    display: flex;
-    gap: 16px 50px;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.group {
-    background-color: coral;
-    border-radius: 12px;
-    align-items: center;
-    padding: 10px;
 }

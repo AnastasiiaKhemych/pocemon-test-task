@@ -17,9 +17,10 @@ export const App = () => {
   const [nextUrl, setNextUrl] = useState('');
   const [prevUrl, setPrevUrl] = useState('');
   const [typeList, setTypeList] = useState<string[]>([]);
-  const [pokemonType, setPokemonType] =useState('');
-
-    console.log(pokemonType)
+  const [pokemonType, setPokemonType] = useState('');
+  const [page, setPage] = React.useState(0)
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [totalRows, setTotalRows] = React.useState<number>(0)
 
   const getPokemons = async (shortPokemonList: ShortObjectInfo[]) => {
       const pokemonFullInfoList: Pokemon[] = [];
@@ -87,6 +88,11 @@ export const App = () => {
                 setPokemonType={setPokemonType}
                 pokemon={pokemonFullInfo}
                 loading={loading}
+                page={page}
+                setPage={setPage}
+                rowsPerPage={rowsPerPage}
+                setRowsPerPage={setRowsPerPage}
+                totalRows={totalRows}
             />}
         >
         </Route>
