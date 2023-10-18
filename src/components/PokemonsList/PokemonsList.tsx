@@ -4,7 +4,7 @@ import {Pokemon} from "../../types/pokemon";
 import {Forms} from "../Forms";
 import './PokemonsList.css';
 import { SuperBalls } from '@uiball/loaders'
-import { Pagination } from '../Pagination/Pagination';
+import {Pagination} from '../Pagination/Pagination';
 
 type Props = {
     typeList: string[],
@@ -32,7 +32,8 @@ export const PokemonsList: React.FC<Props> = ({
   totalRows,
 }) => {
     return (
-        <div className="app_container">
+        <>
+        <div>
             <Forms typeList={typeList} setPokemonType={setPokemonType} pokemonType={pokemonType}/>
             <div className="card_container">
             {loading ? (
@@ -48,14 +49,17 @@ export const PokemonsList: React.FC<Props> = ({
                     <PokemonCard key={item.id} item={item}/>
                 ))
             )}
+             </div>
+        </div>
+            {pokemonType === '' && !loading &&
                 <Pagination
                     page={page}
                     setPage={setPage}
                     rowsPerPage={rowsPerPage}
                     setRowsPerPage={setRowsPerPage}
-                    pokemon={pokemon}
+                    totalRows={totalRows}
                 />
-             </div>
-        </div>
+            }
+        </>
     )
 }

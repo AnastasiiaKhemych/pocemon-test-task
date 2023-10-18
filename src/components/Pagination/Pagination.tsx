@@ -1,20 +1,19 @@
 import {TablePagination} from "@mui/material";
 import React from "react";
-import {Pokemon} from "../../types/pokemon";
 
 type Props = {
     page: number,
     setPage: React.Dispatch<React.SetStateAction<number>>,
     setRowsPerPage:  React.Dispatch<React.SetStateAction<number>>
     rowsPerPage: number,
-    pokemon: Pokemon[],
+    totalRows: number,
 }
 export const Pagination: React.FC<Props>= ({
     page,
     setPage,
     rowsPerPage,
     setRowsPerPage,
-    pokemon,
+    totalRows,
 }) => {
     const handleChangePage = (
         event: React.MouseEvent<HTMLButtonElement> | null,
@@ -32,8 +31,9 @@ export const Pagination: React.FC<Props>= ({
 
     return (
         <TablePagination
+            rowsPerPageOptions={[20,40,60,80]}
             component="div"
-            count={pokemon.length}
+            count={totalRows}
             page={page}
             onPageChange={handleChangePage}
             rowsPerPage={rowsPerPage}
@@ -42,6 +42,7 @@ export const Pagination: React.FC<Props>= ({
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
+                marginBottom: '20px',
             }}
         />
     )

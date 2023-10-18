@@ -13,13 +13,10 @@ export const App = () => {
   const activeName = searchParams.get('name') || '';
   const [pokemonFullInfo, setPokemonFullInfo] = useState<Pokemon[]>([]);
   const [loading, setLoading] = useState(false);
-  const [url, setUrl] = useState('https://pokeapi.co/api/v2/pokemon/');
-  const [nextUrl, setNextUrl] = useState('');
-  const [prevUrl, setPrevUrl] = useState('');
   const [typeList, setTypeList] = useState<string[]>([]);
   const [pokemonType, setPokemonType] = useState('');
   const [page, setPage] = React.useState(0)
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [rowsPerPage, setRowsPerPage] = React.useState(20);
   const [totalRows, setTotalRows] = React.useState<number>(0)
 
   const getPokemons = async (shortPokemonList: ShortObjectInfo[]) => {
@@ -46,13 +43,14 @@ export const App = () => {
       setLoading(true)
 
       if (pokemonType) {
-          const shortPokemonListRes = await pokemonService.getPokemonByType(pokemonType)
+         const shortPokemonListRes = await pokemonService.getPokemonByType(pokemonType)
          const res =  shortPokemonListRes.pokemon.map((item) => {
              return item.pokemon
          })
           await getPokemons(res);
       } else {
-          const shortPokemonListRes = await pokemonService.getPokemons()
+          const shortPokemonListRes = await pokemonService.getPokemons({ limit: rowsPerPage, offset: page * rowsPerPage});
+          setTotalRows(shortPokemonListRes.count);
           await getPokemons(shortPokemonListRes.results);
       }
 
@@ -68,10 +66,8 @@ export const App = () => {
   }
 
   useEffect(() => {
-
       fetchPokemons()
-
-  }, [pokemonType]);
+  }, [pokemonType, page, rowsPerPage]);
 
 
   return (

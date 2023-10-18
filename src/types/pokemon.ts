@@ -7,6 +7,8 @@ export interface ResponseInfo<T> {
     count: number,
     next: string | null,
     previous: string | null,
+    limit?: number,
+    offset?: number,
     results: T[],
 }
 

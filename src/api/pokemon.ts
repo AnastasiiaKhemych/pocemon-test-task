@@ -1,8 +1,24 @@
 import {ShortObjectInfo, ResponseInfo, Pokemon, PokemonTypesInfo} from '../types/pokemon';
 import { client } from '../utils/fetchClient';
 
-export const getPokemons = (): Promise<ResponseInfo<ShortObjectInfo>> => {
-    return client.get<ResponseInfo<ShortObjectInfo>>(`/pokemon`);
+export const getPokemons = async ({
+   limit,
+   offset,
+} : {
+    limit?: number,
+    offset?: number,
+}): Promise<ResponseInfo<ShortObjectInfo>> => {
+    const params = new URLSearchParams();
+
+    if (limit) {
+        params.append('limit', limit.toString())
+    }
+
+    if (offset) {
+        params.append('offset', offset.toString())
+    }
+
+    return await client.get<ResponseInfo<ShortObjectInfo>>(`/pokemon?${params.toString()}`)
 };
 
 export const getPokemonByName = (name: string ): Promise<Pokemon> => {
