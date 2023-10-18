@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/pocemon-test-task/static/css/main.0f1ade0d.css",
-    "main.js": "/pocemon-test-task/static/js/main.c30ceafe.js",
+    "main.js": "/pocemon-test-task/static/js/main.cd150c3f.js",
     "static/media/logo.svg": "/pocemon-test-task/static/media/logo.17b2d8c1482f004467895f547c5a57f7.svg",
     "static/media/pokeball-pokemon-svgrepo-com.svg": "/pocemon-test-task/static/media/pokeball-pokemon-svgrepo-com.6d65eb75af6c1c703d6087696a7c8cee.svg",
     "index.html": "/pocemon-test-task/index.html",
     "main.0f1ade0d.css.map": "/pocemon-test-task/static/css/main.0f1ade0d.css.map",
-    "main.c30ceafe.js.map": "/pocemon-test-task/static/js/main.c30ceafe.js.map"
+    "main.cd150c3f.js.map": "/pocemon-test-task/static/js/main.cd150c3f.js.map"
   },
   "entrypoints": [
     "static/css/main.0f1ade0d.css",
-    "static/js/main.c30ceafe.js"
+    "static/js/main.cd150c3f.js"
   ]
 }
