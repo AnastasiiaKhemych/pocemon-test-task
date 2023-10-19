@@ -43,7 +43,7 @@ export const PokemonCard: React.FC<Props> = ({ item }) => {
     >
       <Card
         sx={{
-          maxHeight: 500,
+          maxHeight: 350,
           padding: "16px",
           width: "100%",
           backgroundColor: colorsType[pokemonType],
@@ -55,7 +55,7 @@ export const PokemonCard: React.FC<Props> = ({ item }) => {
             component="img"
             image={item.sprites.other.dream_world.front_default}
             alt="green iguana"
-            sx={{ height: 250, objectFit: "contain", paddingTop: "20px" }}
+            sx={{ height: 200, objectFit: "contain", paddingTop: "20px" }}
           />
           <CardContent>
             <Typography
@@ -72,15 +72,13 @@ export const PokemonCard: React.FC<Props> = ({ item }) => {
             >
               {item.name} #{item.id}
             </Typography>
-            <Typography>
-              <div className="abilities">
-                {item?.abilities.map((poke) => (
-                  <div className="group" key="poke">
-                    <p>{poke.ability.name}</p>
-                  </div>
-                ))}
-              </div>
-            </Typography>
+            <Box sx={{ display: "flex", justifyContent: "center", gap: "3px" }}>
+              {item?.abilities.map((poke) => (
+                <p className="group" key={`${poke}:${poke.ability.url}`}>
+                  {poke.ability.name}
+                </p>
+              ))}
+            </Box>
           </CardContent>
         </Box>
       </Card>

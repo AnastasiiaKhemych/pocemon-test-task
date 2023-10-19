@@ -17,7 +17,11 @@ export const Forms: React.FC<Props> = ({
   pokemonType,
 }) => {
   const handleChange = (event: SelectChangeEvent) => {
-    setPokemonType(event.target.value as string);
+    if (event.target.value === undefined) {
+      setPokemonType("");
+    } else {
+      setPokemonType(event.target.value as string);
+    }
   };
 
   return (
