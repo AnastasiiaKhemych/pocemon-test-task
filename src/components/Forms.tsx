@@ -17,7 +17,7 @@ export const Forms: React.FC<Props> = ({typeList, setPokemonType, pokemonType}) 
         setPokemonType(event.target.value as string);
     };
     return (
-        <Box sx={{ maxWidth: 345, color: '#755EDF', marginLeft: '100px', paddingTop: '50px'}}>
+        <Box sx={{ mixWidth: 345, padding: '50px'}}>
             <FormControl fullWidth>
                 <InputLabel id="demo-simple-select-label">Type</InputLabel>
                 <Select
@@ -26,10 +26,10 @@ export const Forms: React.FC<Props> = ({typeList, setPokemonType, pokemonType}) 
                     label="Type"
                     value={pokemonType}
                     onChange={handleChange}
-                    sx={{ backgroundColor: '#F8C921'}}
                 >
+                    <MenuItem>None</MenuItem>
                     {typeList.map((item) => (
-                        <MenuItem key={item} value={item}>
+                        <MenuItem key={item} value={item} sx={{textTransform: 'uppercase'}}>
                             {item}
                         </MenuItem>
                     ))}

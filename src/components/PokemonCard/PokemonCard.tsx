@@ -1,9 +1,11 @@
 import {
+    Box,
     Card,
     CardActionArea,
     CardContent,
     CardMedia,
-    Typography} from "@mui/material";
+    Typography
+} from "@mui/material";
 import React, {useState} from "react";
 import './PokemonCard.css';
 import {Pokemon} from "../../types/pokemon";
@@ -38,18 +40,19 @@ type Props = {
 
 export const PokemonCard: React.FC<Props> = ({item}) => {
     const pokemonType = item.types[0].type.name;
-    console.log(pokemonType);
-    console.log(colorsType[pokemonType])
 
     return (
-        <Link to={`/pokemon/info/${item.name}`} style={{ textDecoration: 'none' }}>
+        <Link to={`/pokemon/info/${item.name}`} style={{
+            textDecoration: 'none',
+        }}>
             <Card sx={{
-                maxWidth: 345,
                 maxHeight: 500,
                 padding: '16px',
-                backgroundColor: colorsType[pokemonType]
+                width: '100%',
+                backgroundColor: colorsType[pokemonType],
+                position: 'relative',
             }}>
-                <CardActionArea>
+                <Box>
                     <CardMedia
                         component="img"
                         image={item.sprites.other.dream_world.front_default}
@@ -81,7 +84,7 @@ export const PokemonCard: React.FC<Props> = ({item}) => {
                         </div>
                         </Typography>
                     </CardContent>
-                </CardActionArea>
+                </Box>
             </Card>
         </Link>
     )

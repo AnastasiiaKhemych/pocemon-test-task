@@ -5,6 +5,8 @@ import {Forms} from "../Forms";
 import './PokemonsList.css';
 import { SuperBalls } from '@uiball/loaders'
 import {Pagination} from '../Pagination/Pagination';
+import {Grid} from "@mui/material";
+import Box from "@mui/material/Box";
 
 type Props = {
     typeList: string[],
@@ -35,7 +37,7 @@ export const PokemonsList: React.FC<Props> = ({
         <>
         <div>
             <Forms typeList={typeList} setPokemonType={setPokemonType} pokemonType={pokemonType}/>
-            <div className="card_container">
+            <Box sx={{width: "100%", padding: '48px', justifyContent: 'center'}}>
             {loading ? (
                 <div className="loader">
                 <SuperBalls
@@ -45,11 +47,15 @@ export const PokemonsList: React.FC<Props> = ({
                 />
                 </div>
             ) : (
-                pokemon.map((item) => (
-                    <PokemonCard key={item.id} item={item}/>
-                ))
+                <Grid container spacing={{xs: 2, md: 3, lg: 4}}>
+                    {pokemon.map((item) => (
+                        <Grid item xs={12} sm={6} md={4} lg={3} key={item.id}>
+                            <PokemonCard item={item}/>
+                        </Grid>
+                ))}
+                </Grid>
             )}
-             </div>
+             </Box>
         </div>
             {pokemonType === '' && !loading &&
                 <Pagination
